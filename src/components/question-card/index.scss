@@ -1,0 +1,13 @@
+.question-card {
+  display: flex;
+  &__content {
+    padding: 20px;
+  }
+  &__footer {
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+  }
+}
