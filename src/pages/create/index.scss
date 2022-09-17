@@ -1,0 +1,5 @@
+@use "../../styles/variables.scss" as *;
+
+.create-page {
+  margin-top: calc($navbar + 20px);
+}

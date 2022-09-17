@@ -1,25 +1,22 @@
-import { Grid } from "@mui/material";
+import { Tabs, Tab } from "@mui/material";
 import { Container } from "@mui/system";
-import { Link, NavLink } from "react-router-dom";
+import { useAppContext } from "../../context/context";
 import "./index.scss";
 
 export default function Navbar() {
+  const { tab, setTab } = useAppContext();
+  let _handleChange = (e, newValue) => {
+    setTab(newValue);
+  };
+
   return (
     <div className="navbar">
       <Container sx={{ height: "100%" }}>
         <div className="navbar__links">
-          <NavLink
-            className={({ isActive }) => (isActive ? "-active" : "")}
-            to="/create"
-          >
-            CREATE
-          </NavLink>
-          <NavLink
-            className={({ isActive }) => (isActive ? "-active" : "")}
-            to="/list"
-          >
-            LIST
-          </NavLink>
+          <Tabs value={tab} onChange={_handleChange}>
+            <Tab label="Creator View" />
+            <Tab label="Respondent View" />
+          </Tabs>
         </div>
       </Container>
     </div>

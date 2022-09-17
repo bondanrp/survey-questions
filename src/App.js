@@ -1,22 +1,15 @@
-import { Navigate, Route, Routes } from "react-router";
 import Navbar from "./components/navbar";
 import Create from "./pages/create";
-import { BrowserRouter } from "react-router-dom";
 import List from "./pages/list";
+import { useAppContext } from "./context/context";
 
 function App() {
+  let { tab } = useAppContext();
+  let component = [<Create />, <List />];
   return (
     <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <div className="main">
-          <Routes>
-            <Route exact path="/" element={<Navigate to="/create" />} />
-            <Route exact path="/create" element={<Create />} />
-            <Route exact path="/list" element={<List />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <Navbar />
+      <div className="main">{component[tab]}</div>
     </div>
   );
 }

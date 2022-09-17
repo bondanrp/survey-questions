@@ -7,9 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #f9f9f9;
   position: relative;
+  overflow-y: scroll;
 }
 .main {
-  margin-top: calc($navbar + 20px);
+  margin-top: calc($navbar);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -20,4 +21,7 @@ p {
 }
 .-required {
   color: red;
+}
+.text-sub {
+  color: $sub;
 }

@@ -1,0 +1,13 @@
+@use "../../styles/variables.scss" as *;
+
+.answer-card {
+  border-bottom: 1px solid $border;
+  padding: 40px 60px;
+  &__question {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__input {
+    margin-top: 20px;
+  }
+}

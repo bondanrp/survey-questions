@@ -5,6 +5,7 @@ import App from "./App";
 import { DndProvider } from "react-dnd/dist/core";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AppProvider from "./context/context";
 
 let theme = createTheme({
   palette: {
@@ -20,8 +21,10 @@ let theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <DndProvider backend={HTML5Backend}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <AppProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </AppProvider>
   </DndProvider>
 );

@@ -1,13 +1,82 @@
+@use "../../styles/variables.scss" as *;
+
 .question-card {
   display: flex;
+  z-index: 2;
   &__content {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
   }
   &__footer {
-    border-top: 1px solid #e6e6e6;
+    border-top: 1px solid $border;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 20px;
+    padding: 0 20px;
+  }
+  &__question {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__answer {
+    margin-top: 20px;
+    border-bottom: 1px solid $border;
+    padding-bottom: 20px;
+    font-style: italic;
+  }
+  &__delete {
+    padding: 10px 20px 10px 0;
+    margin-right: 20px;
+    border-right: 1px solid $border;
+  }
+  &__add {
+    position: relative;
+    color: white;
+    background: $primary;
+    display: flex;
+    align-items: center;
+    height: auto;
+    border-radius: 4px;
+    padding: 0 20px;
+    button {
+      font-style: italic;
+      font-weight: bold;
+      border: none;
+      margin-left: 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      background: $primary;
+      color: white;
+      &:hover {
+        color: $primary;
+        background: white;
+      }
+    }
+  }
+}
+.dnd-card {
+  &__handle {
+    height: 20px;
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    &__icon {
+      color: $sub;
+      transform: rotate(90deg) translateX(5px);
+    }
+  }
+  &__container {
+    margin: 10px 0;
+    border-radius: 5px;
+    background: white;
+    &.-active {
+      border-left: 5px solid $primary;
+    }
+    &:hover {
+      .dnd-card__handle {
+        opacity: 1;
+      }
+    }
   }
 }

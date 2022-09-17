@@ -8,6 +8,7 @@
   height: $navbar;
   background: #fff;
   z-index: 5;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   &__links {
     display: flex;
     justify-content: center;
