@@ -12,6 +12,7 @@ export default function Create() {
   let [selected, setSelected] = useState(questions[0].id);
 
   let _handleSubmit = useCallback((data, index) => {
+    console.log("xx");
     setQuestions((prevQuestion) =>
       update(prevQuestion, {
         $splice: [[index, 1, data]],

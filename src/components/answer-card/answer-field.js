@@ -30,11 +30,17 @@ export default function AnswerField({ data }) {
         <FormGroup>
           {data.options.map((v, i) => {
             return (
-              <FormControlLabel
+              <Grid
                 key={`cb${data.question}${i}`}
-                control={<Checkbox />}
-                label={v}
-              />
+                container
+                sx={{ marginTop: "20px" }}
+              >
+                <FormControlLabel
+                  key={`cb${data.question}${i}`}
+                  control={<Checkbox />}
+                  label={v}
+                />
+              </Grid>
             );
           })}
         </FormGroup>
@@ -57,6 +63,7 @@ export default function AnswerField({ data }) {
           placeholder={data.question}
           variant="standard"
           fullWidth
+          minRows={3}
           sx={{
             marginTop: "20px",
           }}

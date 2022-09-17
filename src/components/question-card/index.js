@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import "./index.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ResponseField from "./response-field";
-import generateID from "../../helper/id-generator";
+import useDidMountEffect from "../../hooks/useDidMountEffect";
 
 export default function QuestionCard({
   handleSubmit,
@@ -28,13 +28,15 @@ export default function QuestionCard({
   const [state, setState] = useState(data);
   let [showSnackbar, setShowSnackbar] = useState(false);
 
-  useEffect(() => {
-    handleSubmit(state, index);
-  }, [state]);
+  useDidMountEffect(() => {
+    if (!isEditing) {
+      handleSubmit(state, index);
+    }
+  }, [isEditing]);
 
   let _handleChangeQuestion = (e) => {
     let { id, value } = e.target;
-    setState({ ...state, question: value });
+    setState({ ...state, [id]: value });
   };
 
   let _handleChangeType = (e) => {
@@ -102,35 +104,39 @@ export default function QuestionCard({
             className={`question-card__content ${isEditing ? "-active" : ""}`}
           >
             <Grid container>
-              <Grid item xs={12} md={6}>
-                {isEditing ? (
-                  <TextField
-                    id="question"
-                    variant="standard"
-                    fullWidth
-                    required
-                    placeholder="Question"
-                    sx={{
-                      "& .MuiInputBase-root": {
-                        height: 50,
-                        fontSize: "20px",
-                      },
-                    }}
-                    value={state.question}
-                    onChange={_handleChangeQuestion}
-                  />
-                ) : (
+              {isEditing ? (
+                <>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      id="question"
+                      variant="filled"
+                      fullWidth
+                      required
+                      placeholder="Question"
+                      sx={{
+                        "& .MuiInputBase-root": {
+                          // height: 0,
+                          fontSize: "20px",
+                        },
+                      }}
+                      value={state.question}
+                      onChange={_handleChangeQuestion}
+                    />
+                  </Grid>
+                  <Grid item xs={0} md={1} />
+                </>
+              ) : (
+                <Grid item xs={12}>
                   <p className="question-card__question">
                     {state.question || "Question"}
                     {state.required && <span className="-required">*</span>}
                   </p>
-                )}
-              </Grid>
-              <Grid item xs={0} md={1} />
-              <Grid item xs={12} md={5}>
+                </Grid>
+              )}
+              <Grid item xs={12} md={5} sx={{ display: "flex" }}>
                 {isEditing ? (
                   <Select
-                    variant="standard"
+                    variant="filled"
                     fullWidth
                     value={state.type}
                     label="Type"
