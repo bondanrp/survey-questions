@@ -111,7 +111,6 @@ export default function QuestionCard({
                       id="question"
                       variant="filled"
                       fullWidth
-                      required
                       placeholder="Question"
                       sx={{
                         "& .MuiInputBase-root": {
